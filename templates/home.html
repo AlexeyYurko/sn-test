@@ -1,0 +1,17 @@
+{% extends "basic.html" %}
+{% load humanize %}
+
+{% block title %}Socium Main Page{% endblock %}
+
+{% block content %}
+    {% if posts %}
+        {% for post in posts %}
+            {{ post.by_user }}<br>
+            {{ post.title }}<br>
+            {{ post.text }}<br>
+            <br>
+        {% endfor %}
+    {% else %}
+        No posts. Sorry.
+    {% endif %}
+{% endblock %}

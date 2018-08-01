@@ -1,0 +1,24 @@
+{% extends "basic.html" %}
+{% block title %}
+    Socium User List
+{% endblock %}
+{% block content %}
+    <h1>List of users</h1>
+    {% if users %}
+        <ul>
+            {% for user in users %}
+                <div id="id_username">
+                    <h2><a href="{{ user.get_absolute_url }}">{{ user.user.first_name }} {{ user.user.last_name }}
+                        "{{ user.user.username }}"</a></h2>
+                    {% if user.photo %}
+                        <img src="{{ user.photo.url }}" width="5%" height="5%"
+                             alt="{{ user.username }}">
+                    {% endif %}
+                    <h3>{{ user.user.email }}</h3>
+                </div>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>User list is empty</p>
+    {% endif %}
+{% endblock %}
