@@ -5,9 +5,9 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import UpdateView, ListView, DetailView
 
-from .forms import SignUpForm, UserInformationUpdateForm
+from .forms import SignUpForm, UserInformationUpdateForm, CreatePostForm
 from .models import Post
-from .models import UserProfile as User
+from .models import User
 
 
 class BoardListView(ListView):
@@ -26,6 +26,12 @@ class UserListView(ListView):
     model = User
     context_object_name = 'users'
     template_name = 'users_list.html'
+
+
+class PostDetailView(DetailView):
+    model = Post
+    context_object_name = 'post'
+    template_name = 'post_detail.html'
 
 
 def signup(request):
@@ -48,3 +54,24 @@ class UserUpdateView(UpdateView):
 
     def get_object(self):
         return self.request.user
+
+
+@login_required
+def new_post(request):
+    if request.method == 'POST':
+        form = CreatePostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.by_user = request.user
+            post.save()
+            return redirect('home')
+    else:
+        form = CreatePostForm()
+    return render(request, 'create_post.html', {'form': form})
+
+
+def handle_uploaded_file(f):
+    destination = open('root', 'wb+')
+    for chunk in f.chunks():
+        destination.write(chunk)
+    destination.close()

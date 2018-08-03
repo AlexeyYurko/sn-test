@@ -1,0 +1,26 @@
+{% extends 'basic.html' %}
+
+{% load static %}
+
+{% block title %}Create post{% endblock %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/simplemde.min.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="row center-block">
+        <div class="col-lg-4 col-md-8 col-sm-10">
+            <form method="post" enctype="multipart/form-data" novalidate>
+                {% csrf_token %}
+                {% include 'includes/form.html' %}
+                <button type="submit" class="btn btn-success">Save Post</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+    <script src="{% static 'js/simplemde.min.js' %}"></script>
+    <script>
+        var simplemde = new SimpleMDE();
+    </script>
+{% endblock %}

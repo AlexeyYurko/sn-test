@@ -11,10 +11,10 @@
             <a href="{% url 'home' %}">Socium</a>
         </h1>
         <div class="justify-content-center">
-            <div class="col-lg-8 col-md-10 col-sm-12">
-                <div class="card">
+            <div class="col-sm-12 col-md-10 col-md-offset-1">
+                <div class="card bg-light border-dark mb-3">
                     <div class="card-body">
-                        <h3 class="card-title">Sign up</h3>
+                        <h1 class="card-title">Sign up</h1>
                         <form method="post" novalidate>
                             {% csrf_token %}
                             {% include 'includes/form.html' %}

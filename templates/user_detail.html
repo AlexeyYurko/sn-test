@@ -1,12 +1,12 @@
 {% extends "basic.html" %}
 {% block title %}
-    {{ user.user.first_name }} {{ user.user.last_name }}
+    {{ user.first_name }} {{ user.last_name }}
 {% endblock %}
 {% block content %}
     <h1>User Details</h1>
-    <h2>Name: {{ user.user.first_name }} {{ user.user.last_name }}</h2>
-    <h2>Nickname: {{ user.user.username }}</h2>
-    <h2>E-mail: {{ user.user.email }}</h2>
+    <h2>Name: {{ user.first_name }} {{ user.last_name }}</h2>
+    <h2>Nickname: {{ user.username }}</h2>
+    <h2>E-mail: {{ user.email }}</h2>
     {% if user.photo %}
         <img src="{{ user.photo.url }}" width="30%" height="30%" alt="{{ user.username }}">
     {% endif %}

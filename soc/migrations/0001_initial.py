@@ -69,7 +69,8 @@ class Migration(migrations.Migration):
                 ('likes', models.IntegerField(default=0, verbose_name='Like/Dislike')),
                 ('slug', models.SlugField(editable=False, verbose_name='Slug')),
                 (
-                'by_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
+                    'by_user',
+                    models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name': 'Post',

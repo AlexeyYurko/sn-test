@@ -5,11 +5,31 @@
 
 {% block content %}
     {% if posts %}
-        {% for post in posts %}
-            {{ post.by_user }}<br>
-            {{ post.title }}<br>
-            {{ post.text }}<br>
-            <br>
+        {% for post in posts reversed %}
+            {% if post.visible %}
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a><br>
+                                {{ post.by_user }}<br>
+                            </div>
+                            <div class="panel-body">
+                                {{ post.get_text_as_markdown }}
+                                {% if post.image %}
+                                    <img src="{{ post.image.url }}" width="30%" height="30%">
+                                {% endif %}
+                                <br>
+                            </div>
+                            <div class=panel-footer"}>
+                                &nbsp; {{ post.rating }} <span class="glyphicon glyphicon-plus"></span>
+                                <span class="glyphicon glyphicon-minus"></span>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         {% endfor %}
     {% else %}
         No posts. Sorry.

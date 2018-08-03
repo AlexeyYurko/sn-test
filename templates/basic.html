@@ -17,14 +17,14 @@
             </div>
             <ul class="nav navbar-nav">
                 <li><a href="{% url 'home' %}">Posts</a></li>
-                <li><a href="#">Create Post</a></li>
+                <li><a href="{% url 'new-post' %}">Create Post</a></li>
             </ul>
             {% if user.is_authenticated %}
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            {{ user.username }}
+                            {{ user.username }} {{ user.email }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
                             <li><a class="dropdown-item" href="{% url 'my_account' %}">My account</a></li>
