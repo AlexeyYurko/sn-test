@@ -6,6 +6,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path
 from rest_framework import routers
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 from api import views as api_views
 from soc import views as socium_views
@@ -17,6 +18,9 @@ router.register(r'posts', api_views.PostViewSet)
 urlpatterns = [
                   path('api/', include(router.urls)),
                   path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+                  path('api-token-auth/', obtain_jwt_token),
+                  path('api-token-refresh/', refresh_jwt_token),
 
                   path('', socium_views.BoardListView.as_view(), name='home'),
                   path('admin/', admin.site.urls),
